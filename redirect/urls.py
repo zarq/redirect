@@ -16,6 +16,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^$', 'redirect.views.index'),
+    url(r'^add$', 'redirect.views.add'),
+    url(r'^detail/(?P<short_key>[a-z0-9]+)$', 'redirect.views.detail'),
 
-    url(r'^(?P<short_key>[a-z]+)$', 'redirect.views.redirect'),
+    url(r'^(?P<short_key>[a-z0-9]+)$', 'redirect.views.redirect'),
 )

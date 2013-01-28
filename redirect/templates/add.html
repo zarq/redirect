@@ -1,0 +1,8 @@
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="/r/add" method="post">
+{% csrf_token %}
+<label for="url">Enter destination URL</label>
+<input type="text" name="url" />
+<input type="submit" value="Add" />
+</form>

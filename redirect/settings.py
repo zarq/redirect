@@ -1,6 +1,6 @@
 # Django settings for redirect project.
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -84,7 +84,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'cdsexdimscliubugzatnzrfjqtnzstuvybyahzln'
+SECRET_KEY = 'rwbarrizwyjauktfknhoougdripzfagvjkeeqqbfrgpdaplfnp'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -107,6 +107,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '/home/ivo/redirect/redirect/templates',
 )
 
 INSTALLED_APPS = (

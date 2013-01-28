@@ -1,0 +1,12 @@
+{% if all_redirects %}
+  <table>
+  {% for redirect in all_redirects %}
+    <tr><td><a href="{{ redirect.url }}">{{ redirect.short_key }}</a></td>
+        <td><a href="{{ redirect.url }}">{{ redirect.url }}</a></td>
+        <td>{{ redirect.created }}</td></tr>
+  {% endfor %}
+  </table>
+{% else %}
+  <p>No redirects</p>
+{% endif %}
+
