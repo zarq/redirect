@@ -6,11 +6,9 @@ from redirect.utils import encode_short_key
 
 def index(request):
     all = Redirect.objects.all().order_by('created')
-    t = loader.get_template('index.html')
-    c = Context( {
-        'all_redirects': all
-    } )
-    return HttpResponse(t.render(c))
+    return render_to_response(
+        'index.html', {},
+        context_instance=RequestContext(request))
 
 def redirect(request, short_key):
     try:
@@ -25,18 +23,20 @@ def add(request):
         redirect.save()
         short_key = encode_short_key(redirect.id)
         redirect.short_key = short_key
+        long_key = encode_long_key(redirect.id)
+        redirect.long_key = long_key
         redirect.save()
-        return HttpResponseRedirect('/r/detail/' + redirect.short_key)
+        return HttpResponseRedirect('/r/_d/' + redirect.short_key)
     else:
-        return render_to_response('add.html', {},
-                                  context_instance=RequestContext(request))
+        return render_to_response(
+            'add.html', {},
+            context_instance=RequestContext(request))
 
 def detail(request, short_key):
     try:
         redirect = Redirect.objects.get(short_key=short_key)
     except Redirect.DoesNotExist:
         raise Http404
-    t = loader.get_template('detail.html')
-    c = Context({ 'redirect': redirect })
-    return HttpResponse(t.render(c))
-
+    return render_to_response(
+        'detail.html', { 'redirect': redirect },
+        context_instance=RequestContext(request))
