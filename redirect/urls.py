@@ -15,5 +15,6 @@ urlpatterns = patterns('',
     url(r'^_a$', 'redirect.views.add'),
     url(r'^_d/(?P<short_key>[a-z0-9]+)$', 'redirect.views.detail'),
 
-    url(r'^(?P<short_key>[a-z0-9]+)$', 'redirect.views.redirect'),
+    url(r'^(?P<short_key>[a-z0-9]+)$', 'redirect.views.redirect_short'),
+    url(r'^l/(?P<long_key>[a-z]+)$', 'redirect.views.redirect_long'),
 )

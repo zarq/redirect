@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response
 from django.template import Context, loader, RequestContext
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from redirect.models import Redirect
-from redirect.utils import encode_short_key
+from redirect.utils import encode_short_key, encode_long_key
 
 def index(request):
     all = Redirect.objects.all().order_by('created')
@@ -10,9 +10,16 @@ def index(request):
         'index.html', {},
         context_instance=RequestContext(request))
 
-def redirect(request, short_key):
+def redirect_short(request, short_key):
     try:
         redirect = Redirect.objects.get(short_key=short_key)
+    except Redirect.DoesNotExist:
+        raise Http404
+    return HttpResponseRedirect(redirect.url)
+
+def redirect_long(request, long_key):
+    try:
+        redirect = Redirect.objects.get(long_key=long_key)
     except Redirect.DoesNotExist:
         raise Http404
     return HttpResponseRedirect(redirect.url)
